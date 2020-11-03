@@ -1,0 +1,11 @@
+include ':domain'
+include ':common_unit_test'
+include ':data:repository'
+include ':common_jvm'
+include ':common_android'
+include ':features:main'
+include ':presentation'
+include ':data:local'
+include ':data:remote'
+include ':app'
+rootProject.name = "AndroidCleanMVVM"

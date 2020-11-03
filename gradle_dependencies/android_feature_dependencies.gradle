@@ -1,0 +1,22 @@
+apply plugin: 'com.android.library'
+apply from: '../../gradle_dependencies/android_commons.gradle'
+def globalConf = rootProject.ext
+
+dependencies {
+    //Internal modules
+    implementation project(globalConf.modules.domain)
+    implementation project(globalConf.modules.common_jvm)
+    implementation project(globalConf.modules.common_unit_test)
+    implementation project(globalConf.modules.common)
+    implementation project(globalConf.modules.repository)
+    implementation project(globalConf.modules.navigation)
+    implementation project(globalConf.modules.comicobaselib)
+
+    // Android UI
+    implementation globalConf.androidLibraries.appCompat
+    implementation globalConf.androidLibraries.coreKtx
+    implementation globalConf.androidLibraries.constrainLayout
+    implementation globalConf.androidLibraries.recyclerView
+    implementation globalConf.androidLibraries.navigation
+    implementation globalConf.androidLibraries.navigationFrag
+}

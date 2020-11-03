@@ -1,0 +1,58 @@
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
+
+def globalConf = rootProject.ext
+
+android {
+    compileSdkVersion globalConf.targetSdk
+    buildToolsVersion globalConf.buildTools
+
+    defaultConfig {
+        minSdkVersion globalConf.minSdk
+        targetSdkVersion globalConf.targetSdk
+        versionCode globalConf.versionCode
+        versionName globalConf.versionName
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    // For Kotlin projects
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+}
+sourceCompatibility = "8"
+targetCompatibility = "8"
+
+dependencies {
+    // Kotlin
+    implementation globalConf.kotlinLibraries.kotlin
+    implementation globalConf.kotlinLibraries.kotlinCoroutineCore
+    implementation globalConf.androidLibraries.kotlinCoroutineAndroid
+    // Koin
+    implementation globalConf.libraries.koin
+    implementation globalConf.libraries.koinViewModel
+
+
+    implementation globalConf.androidLibraries.lifecycleViewModel
+    implementation globalConf.androidLibraries.lifecycleExtensions
+
+    // Internal modules
+    implementation project(globalConf.modules.common_jvm)
+    implementation project(globalConf.modules.common_unit_test)
+
+    // Test
+    androidTestImplementation globalConf.testLibraries.espresso
+
+    testImplementation globalConf.testLibraries.junit5JupiterApi
+    testRuntimeOnly globalConf.testLibraries.junit5JupiterEngine
+
+    testImplementation globalConf.testLibraries.archCoreTest
+    testImplementation globalConf.testLibraries.mockk
+    testImplementation globalConf.testLibraries.kotlinCoroutineTest
+
+    testImplementation globalConf.testLibraries.mockWebServer
+    testImplementation globalConf.testLibraries.koinTest
+}
